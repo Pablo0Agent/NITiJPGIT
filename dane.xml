@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="katalog">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="produkt" maxOccurs="unbounded" minOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nazwa" type="xs:string"/>
+              <xs:element name="kategoria" type="xs:string"/>
+              <xs:element name="cena">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:decimal">
+                      <xs:attribute name="waluta" type="xs:string" use="required"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dostepny" type="xs:boolean"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

@@ -1,0 +1,28 @@
+{
+  "katalog": [
+    {
+      "id": 101,
+      "nazwa": "Klawiatura mechaniczna RGB",
+      "kategoria": "Akcesoria",
+      "cena": 349.99,
+      "waluta": "PLN",
+      "dostepny": true
+    },
+    {
+      "id": 102,
+      "nazwa": "Monitor 27 cali 4K",
+      "kategoria": "Monitory",
+      "cena": 1499.00,
+      "waluta": "PLN",
+      "dostepny": true
+    },
+    {
+      "id": 103,
+      "nazwa": "Mysz bezprzewodowa",
+      "kategoria": "Akcesoria",
+      "cena": 129.50,
+      "waluta": "PLN",
+      "dostepny": false
+    }
+  ]
+}

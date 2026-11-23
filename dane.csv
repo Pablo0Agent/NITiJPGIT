@@ -1,0 +1,4 @@
+id,nazwa,kategoria,cena,waluta,dostepny
+101,Klawiatura mechaniczna RGB,Akcesoria,349.99,PLN,true
+102,Monitor 27 cali 4K,Monitory,1499.00,PLN,true
+103,Mysz bezprzewodowa,Akcesoria,129.50,PLN,false

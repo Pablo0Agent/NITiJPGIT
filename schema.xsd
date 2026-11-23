@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<katalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="schema.xsd">
+  <produkt id="101">
+    <nazwa>Klawiatura mechaniczna RGB</nazwa>
+    <kategoria>Akcesoria</kategoria>
+    <cena waluta="PLN">349.99</cena>
+    <dostepny>true</dostepny>
+  </produkt>
+  <produkt id="102">
+    <nazwa>Monitor 27 cali 4K</nazwa>
+    <kategoria>Monitory</kategoria>
+    <cena waluta="PLN">1499.00</cena>
+    <dostepny>true</dostepny>
+  </produkt>
+  <produkt id="103">
+    <nazwa>Mysz bezprzewodowa</nazwa>
+    <kategoria>Akcesoria</kategoria>
+    <cena waluta="PLN">129.50</cena>
+    <dostepny>false</dostepny>
+  </produkt>
+</katalog>
