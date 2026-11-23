@@ -1,4 +1,4 @@
-# Katalog Produktów Sklepu Komputerowego – NITiJP
+# Katalog Produktów Sklepu Komputerowego – NITiJPGIT
 
 ## Temat zbioru danych
 Zbiór przedstawia uproszczony **katalog produktów sklepu komputerowego i akcesoriów biurowych**. Zawiera 3 przykładowe pozycje asortymentowe (klawiaturę mechaniczną, monitor 4K oraz mysz bezprzewodową) wraz z ich kluczowymi parametrami handlowymi i magazynowymi: identyfikatorem, nazwą, kategorią, ceną jednostkową, walutą oraz statusem dostępności.
