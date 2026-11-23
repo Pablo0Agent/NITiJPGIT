@@ -1,28 +1,42 @@
-# Katalog Produktów – NITiJP
+# Katalog Produktów Sklepu Komputerowego – NITiJP
 
-Repozytorium zawiera przykładowy, spójny zestaw danych opisujących katalog produktów w trzech popularnych formatach wymiany danych: **XML (wraz ze schematem walidacji XSD)**, **JSON** oraz **CSV**.
+## Temat zbioru danych
+Zbiór przedstawia uproszczony **katalog produktów sklepu komputerowego i akcesoriów biurowych**. Zawiera 3 przykładowe pozycje asortymentowe (klawiaturę mechaniczną, monitor 4K oraz mysz bezprzewodową) wraz z ich kluczowymi parametrami handlowymi i magazynowymi: identyfikatorem, nazwą, kategorią, ceną jednostkową, walutą oraz statusem dostępności.
 
-## Struktura repozytorium
+Celem repozytorium jest prezentacja tego samego zestawu informacji w trzech standardach wymiany danych oraz pokazanie różnic w ich strukturze, typowaniu i walidacji.
 
-* `dane.xml` – główne dane katalogu zapisane w formacie XML, powiązane ze schematem walidacji.
-* `schema.xsd` – definicja schematu XML (XML Schema Definition), określająca wymaganą strukturę, typy danych (liczby, wartości logiczne) oraz atrybuty.
-* `dane.json` – reprezentacja tych samych rekordów w lekkim formacie obiektowym JSON.
-* `dane.csv` – płaska struktura tabelaryczna rozdzielana przecinkami (kodowanie UTF-8, standard RFC 4180).
+---
 
-## Model danych
+## Zawartość repozytorium
 
-Każdy rekord w katalogu reprezentuje pojedynczy produkt i składa się z następujących pól:
+* `dane.xml` – dane katalogu w formacie znacznikowym XML, powiązane ze schematem walidacji.
+* `schema.xsd` – schemat XML Schema Definition (XSD), wymuszający poprawną hierarchię i typy pól.
+* `dane.json` – te same dane zapisane w formacie obiektowym JSON.
+* `dane.csv` – płaska tabela tekstowa rozdzielana przecinkami (kodowanie UTF-8, standard RFC 4180).
 
-| Pole | Typ danych | Opis | Przykład |
+---
+
+## Różnice w przedstawieniu danych między formatami
+
+Choć wszystkie pliki przechowują identyczne wartości, każdy format organizuje je w inny sposób:
+
+| Cecha | XML + XSD (`dane.xml`, `schema.xsd`) | JSON (`dane.json`) | CSV (`dane.csv`) |
 | :--- | :--- | :--- | :--- |
-| `id` | Liczba całkowita dodatnia | Unikalny identyfikator produktu | `101` |
-| `nazwa` | Tekst (`string`) | Pełna nazwa produktu | `Klawiatura mechaniczna RGB` |
-| `kategoria` | Tekst (`string`) | Grupa asortymentowa | `Akcesoria` |
-| `cena` | Liczba dziesiętna (`decimal`) | Cena jednostkowa produktu | `349.99` |
-| `waluta` | Tekst (`string`) | Kod waluty (atrybut ceny w XML) | `PLN` |
-| `dostepny` | Wartość logiczna (`boolean`) | Status dostępności w magazynie (`true`/`false`) | `true` |
+| **Struktura danych** | Drzewiasta (hierarchiczna), oparta na zagnieżdżonych znacznikach (`<katalog>` -> `<produkt>`). | Obiektowo-tablicowa (klucz-wartość), oparta na nawiasach `{}` oraz tablicy obiektów `[]`. | Płaska (dwuwymiarowa) – wyłącznie wiersze i kolumny bez zagnieżdżeń. |
+| **Atrybuty i metadane** | Rozróżnia **elementy** (np. `<nazwa>`) i **atrybuty** przypisane do znacznika (`id="101"`, `waluta="PLN"`). | Brak podziału na atrybuty i elementy – wszystkie cechy są równorzędnymi kluczami obiektu (`"id": 101`, `"waluta": "PLN"`). | Brak obsługi atrybutów i metadanych – każda informacja zajmuje osobną kolumnę. |
+| **Typowanie danych** | W samym XML wszystko jest tekstem; ścisłe typy (`xs:positiveInteger`, `xs:decimal`, `xs:boolean`) narzuca dopiero zewnętrzny plik `schema.xsd`. | Wbudowane podstawowe typy bezpośrednio w składni: liczby bez cudzysłowu (`349.99`), wartości logiczne (`true`/`false`), tekst w cudzysłowie. | Brak typowania – wszystkie wartości są traktowane jako zwykły ciąg znaków (tekst) oddzielony przecinkami. |
+| **Walidacja poprawności** | Rygorystyczna walidacja struktury, kolejności tagów i typów w oparciu o dołączony schemat XSD. | Walidacja ogranicza się domyślnie do poprawności składniowej (opcjonalnie wymaga osobnego pliku JSON Schema). | Brak wbudowanej walidacji – programy odczytujące muszą same interpretować zawartość kolumn. |
+| **Rozmiar i czytelność** | Największa objętość pliku przez powtarzające się znaczniki otwierające i zamykające. | Kompaktowy zapis, bardzo czytelny dla aplikacji webowych i API. | Najmniejszy rozmiar pliku; idealny do szybkiego otwarcia w arkuszach kalkulacyjnych (Excel) lub podglądu w tabeli na GitHubie. |
 
-## Walidacja i podgląd
+---
 
-* **XML + XSD:** Plik `dane.xml` zawiera odwołanie `xsi:noNamespaceSchemaLocation="schema.xsd"`. Otwarcie projektu w edytorze wspierającym XML (np. Visual Studio Code z rozszerzeniem *Red Hat XML*) automatycznie weryfikuje poprawność danych względem schematu.
-* **CSV:** Plik `dane.csv` jest automatycznie renderowany przez GitHuba w formie przeszukiwalnej tabeli bezpośrednio w przeglądarce.
+## Model pól
+
+| Pole | Opis | Przykładowa wartość |
+| :--- | :--- | :--- |
+| `id` | Unikalny numer katalogowy produktu | `101` |
+| `nazwa` | Handlowa nazwa urządzenia | `Klawiatura mechaniczna RGB` |
+| `kategoria` | Dział asortymentowy | `Akcesoria` |
+| `cena` | Cena brutto produktu | `349.99` |
+| `waluta` | Kod waluty (w XML jako atrybut elementu `<cena>`) | `PLN` |
+| `dostepny` | Informacja, czy towar jest aktualnie na stanie | `true` |
